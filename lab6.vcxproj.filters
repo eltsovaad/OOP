@@ -21,9 +21,15 @@
     <ClCompile Include="Mass.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="My_Error.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mass.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="My_Error.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

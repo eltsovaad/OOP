@@ -1,4 +1,5 @@
 #include "Mass.h"
+#include "My_Error.h"
 #include <iostream>
 
 using namespace std;
@@ -20,19 +21,35 @@ Mass::~Mass()
 
 void Mass::show() {
 	cout << "Массив в данный момент:" << endl;
-	for (int i = 0; i < N; i++) {
-		cout << "Элемент массива " << i << " = " << massive[i] << endl;
+	try {
+		for (int i = 0; i < N; i++) {
+			if (i > N) { 
+				throw(My_Error());
+			}
+			cout << "Элемент массива " << i << " = " << massive[i] << endl;
+		}
+	}
+	catch (My_Error) {
+		cout << "Выход за границы массива" << endl;
 	}
 }
 
 int Mass::find_min(){
 	int min=massive[0];
-	for (int i = 1; i < N; i++) {
-		if (abs(massive[i]) < min) {
-			min = massive[i];
+	try {
+		for (int i = 1; i < N; i++) {
+			if (i > N) {
+				throw(My_Error());
+			}
+			if (abs(massive[i]) < min) {
+				min = massive[i];
+			}
 		}
+		return min;
 	}
-	return min;
+	catch (My_Error) {
+		cout << "Выход за границы массива" << endl;
+	}
 }
 
 int Mass::sum_after_zero() {

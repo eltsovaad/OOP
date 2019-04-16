@@ -117,9 +117,11 @@
   <ItemGroup>
     <ClCompile Include="lab6.cpp" />
     <ClCompile Include="Mass.cpp" />
+    <ClCompile Include="My_Error.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mass.h" />
+    <ClInclude Include="My_Error.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

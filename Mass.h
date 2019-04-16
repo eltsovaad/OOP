@@ -10,7 +10,7 @@ public:
 	void update_mass();
 private:
 	int N;
-	int* massive = new int [N];
+	int* massive;
 
 };
 

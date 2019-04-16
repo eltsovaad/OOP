@@ -7,6 +7,9 @@ using namespace std;
 
 Mass::Mass()
 {
+	cout << "Введите количество элементов массива: ";
+	cin >> N;
+	massive = new int[N];
 	for (int i = 0; i < N; i++) {
 		cout << "Введите mass[" << i << "]= ";
 		cin >> massive[i];
@@ -17,6 +20,7 @@ Mass::Mass()
 Mass::~Mass()
 {
 	delete[] massive;
+	massive = NULL;
 }
 
 void Mass::show() {
@@ -31,6 +35,7 @@ void Mass::show() {
 	}
 	catch (My_Error) {
 		cout << "Выход за границы массива" << endl;
+		abort();
 	}
 }
 
@@ -49,32 +54,59 @@ int Mass::find_min(){
 	}
 	catch (My_Error) {
 		cout << "Выход за границы массива" << endl;
+		abort();
 	}
 }
 
 int Mass::sum_after_zero() {
 	int sum = 0;
 	int flag = 0;
-	for (int i = 0; i < N; i++) {
-		if (massive[i] == 0) {
-			flag = 1;
+	try {
+		for (int i = 0; i < N; i++) {
+			if (i >= N) {
+				throw(My_Error());
+			}
+			if (massive[i] == 0) {
+				flag = 1;
+			}
+			if (flag == 1) {
+				sum += massive[i];
+			}
 		}
-		if (flag == 1) {
-			sum += massive[i];
+		if (flag == 0) {
+			cout << "Нулевых элементов нет" << endl;
 		}
+		return sum;
 	}
-	return sum;
+	catch (My_Error) {
+		cout << "Выход за границы массива" << endl;
+	}
 }
 
 void Mass:: update_mass(){
 	int * m = new int[N];
 	int i = 0;
-		for (int j = 0, i; j < N; i++, j += 2) {
+	try {
+		for (int j = 0; j < N; i++, j += 2) {
+			if ((i >= N)||(j>=N)) {
+				throw(My_Error());
+			}
 			m[i] = massive[j];
 		}
-		for (int j = 1, i; j < N; i++, j += 2) {
+		for (int j = 1; j < N; i++, j += 2) {
+			if ((i >= N)||(j>=N)) {
+				throw(My_Error());
+			}
 			m[i] = massive[j];
 		}
-		massive = m;
+		for (int j = 0; j < N; j++) {
+			massive[j] = m[j];
+		}
 		delete[]m;
+		m = NULL;
+	}
+	catch (My_Error) {
+		cout << "Выход за границы массива" << endl;
+		abort();
+	}
 }
